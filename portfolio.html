@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olamitunde Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+       @media (max-width: 768px) {
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      .con {
+        flex-direction: column;
+        margin-top: 100px;
+      }
+      
+    }
+
+      .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .hero-pattern {
+      background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 90%);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar -->
+   <header class="fixed top-0 left-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <img width="200" height="50" src="Screenshot_2025-07-11_at_4.56.43_AM-removebg-preview.png" alt="Olamitunde Logo" class="h-10 w-auto">
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex  items-center text-white space-x-8">
+        <a href="index.html" class="nav-link text-sm font-medium">Home</a>
+        <a href="about.html" class="nav-link text-sm font-medium">About</a>
+        <a href="services.html" class="nav-link text-sm font-medium">Services</a>
+        
+        <!-- Dropdown Menu -->
+        <div class="relative group">
+          <button class="nav-link text-sm font-medium flex items-center space-x-1">
+            <span>Contact</span>
+            <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+          </button>
+          
+          <div class="absolute right-0 mt-2 w-64 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 transform z-50">
+            <div class="py-2 px-4 grid grid-cols-1 gap-1">
+              <div class="border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                <h3 class="text-sm font-semibold text-primary-600 dark:text-primary-400">Main Navigation</h3>
+              </div>
+              <a href="#" class="block px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Web Development</a>
+              <a href="#" class="block px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Design Services</a>
+              <a href="#" class="block px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded">SEO Services</a>
+              
+              <div class="border-b border-gray-200 dark:border-gray-700 pb-2 mt-2 mb-2">
+                <h3 class="text-sm font-semibold text-primary-600 dark:text-primary-400">Quick Links</h3>
+              </div>
+              <a href="#" class="block px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Privacy Policy</a>
+              <a href="#" class="block px-2 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <i id="themeIcon" class="fas fa-moon text-gray-700 dark:text-yellow-300"></i>
+        </button>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuButton" class="md:hidden  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+        <i class="fas fa-bars text-lg"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu - FIXED: Single mobile menu element -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 h-[400px] md:hidden right-0 w-full bg-white dark:bg-gray-800 shadow-lg  z-50 p-6 overflow-y-auto">
+      <div class="flex justify-between items-center mb-8">
+        <img width="200" height="50" src="Screenshot_2025-07-11_at_4.56.43_AM-removebg-preview.png" alt="Olamitunde Logo" class="h-8 w-auto">
+        <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+      
+      <nav class="flex flex-col  space-y-4 " id="menunav">
+        <a href="index.html" class="nav-link text-base font-medium py-2">Home</a>
+        <a href="about.html" class="nav-link text-base font-medium py-2">About</a>
+        <a href="services.html" class="nav-link text-base font-medium py-2">Services</a>
+        
+        <div class="pt-2">
+          <button id="mobileContactToggle" class="nav-link text-base font-medium flex items-center justify-between w-full py-2">
+            <span>Contact</span>
+            <i id="mobileContactIcon" class="fas fa-chevron-down text-xs transition-transform"></i>
+          </button>
+          
+          <div id="mobileContactMenu" class="pl-4 mt-2 space-y-2 hidden">
+            <a href="#" class="block py-2 text-sm hover:text-primary-500">Web Development</a>
+            <a href="#" class="block py-2 text-sm hover:text-primary-500">Design Services</a>
+            <a href="#" class="block py-2 text-sm hover:text-primary-500">SEO Services</a>
+          </div>
+        </div>
+        
+        <div class="pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
+          <button id="mobileThemeToggle" class="flex items-center space-x-2 w-full text-left">
+            <i class="fas fa-moon"></i>
+            <span>Dark Mode</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-800 text-white py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-3xl font-bold mb-4">Dynamic Web Solutions</h1>
+        <p class="mb-6 max-w-xl mx-auto">
+          Explore Olamitunde's innovative web development projects showcasing
+          expertise in React and Tailwind CSS.
+        </p>
+        <div class="space-x-2">
+          <span class="bg-white text-gray-800 px-2 py-1 rounded text-sm">Web Development</span>
+          <span class="bg-white text-gray-800 px-2 py-1 rounded text-sm">React Framework</span>
+          <span class="bg-white text-gray-800 px-2 py-1 rounded text-sm">Tailwind CSS</span>
+        </div>
+        <div class="mt-6 text-sm">
+          <!-- <p>Client: Olamitunde Inc.</p>
+          <p>Date: March 2023</p>
+          <p>Role: Lead Developer</p> -->
+          <!-- <p>Website: <a href="https://www.relume.io" class="underline">www.relume.io</a></p> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-xl font-semibold mb-2">Portfolio</h2>
+        <h3 class="text-3xl font-bold mb-6">Explore Our Web Projects</h3>
+        <p class="mb-10 text-gray-600">Innovative solutions for modern web challenges.</p>
+
+        <!-- Project Cards -->
+        <div class="space-y-12">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- <div class="bg-gray-200 h-56"> -->
+              <!-- <img src="imag/Screenshot 2025-10-17 at 4.28.48 PM.png" alt=""> -->
+            <!-- </div> -->
+              <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+              <img src="imag/Screenshot 2025-10-17 at 4.28.48 PM.png" 
+               alt="Mobile App Dashboard" 
+               class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+               >
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent  opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <h3 class="text-xl font-bold text-white mb-2">E-commerce Website </h3>
+              <p class="text-gray-300 mb-4">E-commerce website.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">React</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">D3.js</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">Firebase</span>
+              </div>
+            </div>
+            <a href="https://therealgreatness.vercel.app/" class="absolute inset-0 z-10" aria-label="View SaaS Dashboard project"></a>
+          </div>
+      
+            <div class="text-left">
+              <h4 class="font-bold text-lg mb-2">E-commerce Platform</h4>
+              <div class="space-x-2 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">E-commerce</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">React App</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Responsive Design</span>
+              </div>
+              <p>
+                This project showcases a fully functional e-commerce platform built with React and Tailwind CSS. It features a user-friendly interface and seamless shopping experience.
+              </p>
+            </div>
+        </div>
+
+        <!-- project-card-2 -->
+        <div class="space-y-12">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- <div class="bg-gray-200 h-56"> -->
+              <!-- <img src="imag/Screenshot 2025-10-17 at 4.28.48 PM.png" alt=""> -->
+            <!-- </div> -->
+              <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+              <img src="imag/Screenshot 2025-10-17 at 4.50.32 PM.png" 
+               alt="Mobile App Dashboard" 
+               class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+               >
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent  opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <h3 class="text-xl font-bold text-white mb-2">E-commerce Website </h3>
+              <p class="text-gray-300 mb-4">E-commerce website.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">React</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">D3.js</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">Firebase</span>
+              </div>
+            </div>
+            <a href="https://therealgreatness.vercel.app/" class="absolute inset-0 z-10" aria-label="View SaaS Dashboard project"></a>
+          </div>
+      
+            <div class="text-left">
+              <h4 class="font-bold text-lg text-gray-300 mb-2">Personal Portfolio</h4>
+              <div class="space-x-2 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Portfolio</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Web Design</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Tailwind CSS</span>
+              </div>
+              <p>
+                A personal portfolio website designed to showcase my skills and projects. Built with modern web technologies for optimal performance.
+              </p>
+            </div>
+        </div>
+
+             <div class="space-y-12">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- <div class="bg-gray-200 h-56"> -->
+              <!-- <img src="imag/Screenshot 2025-10-17 at 4.28.48 PM.png" alt=""> -->
+            <!-- </div> -->
+              <div class="group relative overflow-hidden rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+              <img src="imag/Screenshot 2025-10-17 at 4.44.01 PM.png" 
+               alt="Mobile App Dashboard" 
+               class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+               >
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent  opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <h3 class="text-xl font-bold text-white mb-2">Real Estate Website </h3>
+              <p class="text-gray-300 mb-4">Real Estate Website.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">React</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">D3.js</span>
+                <span class="px-2 py-1 bg-primary-600/80 text-white text-xs rounded">Firebase</span>
+              </div>
+            </div>
+            <a href="https://therealgreatness.vercel.app/" class="absolute inset-0 z-10" aria-label="View SaaS Dashboard project"></a>
+          </div>
+      
+            <div class="text-left">
+              <h4 class="font-bold text-lg  mb-2">Real Estate Website</h4>
+              <div class="space-x-2 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Real Estate </span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">React</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-sm">Tailwind CSS</span>
+              </div>
+              <p>
+                A personal portfolio website designed to showcase my skills and projects. Built with modern web technologies for optimal performance.
+              </p>
+            </div>
+        </div>
+
+          <!-- <button class="mt-10 border px-4 py-2 rounded hover:bg-gray-100">View all</button> -->
+        </div>
+      </div>
+    </section>
+
+     <section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-400 mb-4">
+          Client Feedback
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          What My <span class="gradient-text">Clients Say</span>
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Don't just take my word for it - here's what my clients have to say about working with me.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8" data-aos="fade-up">
+          <div class="flex items-center mb-4">
+            <div class="flex items-center space-x-1 text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <blockquote class="text-gray-600 dark:text-gray-300 mb-6">
+            "Olamitunde delivered our e-commerce platform ahead of schedule and under budget. His attention to detail and problem-solving skills are exceptional. Our conversion rates have improved by 35% since launch."
+          </blockquote>
+          <div class="flex items-center ">
+            <h1  class="w-12 h-12 rounded-full object-cover mr-4 pt-3 font-bold text-center bg-pink-500">SJ</h1>
+            <div>
+              <h4 class="font-bold">Sarah Johnson</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">CEO, Fashion Boutique</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <div class="flex items-center space-x-1 text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <blockquote class="text-gray-600 dark:text-gray-300 mb-6">
+            "Working with Olamitunde on our corporate website redesign was a pleasure. He understood our brand perfectly and created a site that truly represents our company values while being highly functional."
+          </blockquote>
+          <div class="flex items-center">
+             <h1  class="w-12 h-12 rounded-full object-cover mr-4 pt-3 font-bold text-center bg-green-900">MC</h1>
+            <div>
+              <h4 class="font-bold">Michael Chisom</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Marketing Director, Tech Corp</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <div class="flex items-center space-x-1 text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          <blockquote class="text-gray-600 dark:text-gray-300 mb-6">
+            "The analytics dashboard Olamitunde built for our SaaS product has transformed how our customers interact with data. His technical skills are matched only by his ability to understand user needs."
+          </blockquote>
+          <div class="flex items-center">
+             <h1  class="w-12 h-12 rounded-full object-cover mr-4 pt-3 font-bold text-center bg-pink-800">AD</h1>
+            <div>
+              <h4 class="font-bold">Amina Diallo</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Product Manager, Data Insights</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Contact Call to Action -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold mb-4">Let's Build Something Amazing Together</h2>
+        <p class="mb-6 text-gray-600">Contact Olamitunde today to discuss your web development needs or explore more of our projects.</p>
+        <div class="space-x-2">
+          <a href="contact us.html"><button class="bg-black text-white px-4 py-2 rounded">Contact</button></a>
+          <!-- <button class="border px-4 py-2 rounded hover:bg-gray-100">View</button> -->
+        </div>
+      </div>
+    </section>
+
+<footer class="bg-gray-900 text-gray-300 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-12">
+        <div>
+          <a href="index.html" class="flex items-center space-x-2 mb-6">
+            <img width="200" height="50" src="Screenshot_2025-07-11_at_4.56.43_AM-removebg-preview.png" alt="Olamitunde Logo" class="h-8 w-auto">
+          </a>
+          <p class="text-sm mb-6">
+            Creating beautiful, functional websites with modern web technologies to help businesses grow their online presence.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="hover:text-white transition-colors">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-white font-medium mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="services.html" class="hover:text-white transition-colors">Services</a></li>
+            <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white font-medium mb-4">Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">UI/UX Design</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">SEO Optimization</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Web Maintenance</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Consulting</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white font-medium mb-4">Newsletter</h4>
+          <p class="text-sm mb-4">
+            Subscribe to my newsletter for the latest updates, tips, and insights on web development.
+          </p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-900">
+            <button class="px-4 py-2 bg-primary-600 text-white rounded-r-md hover:bg-primary-700 transition-colors">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="text-xs mt-2 text-gray-500">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-gray-500">
+          © 2025 Olamitunde. All rights reserved.
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+     // Initialize AOS animation library
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Apply the saved theme
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+    
+    // Theme toggle handler
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      themeIcon.classList.toggle('fa-moon', !isDark);
+      themeIcon.classList.toggle('fa-sun', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    
+    themeToggle.addEventListener('click', toggleTheme);
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+    
+    // Mobile menu functionality - FIXED
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileContactToggle = document.getElementById('mobileContactToggle');
+    const mobileContactMenu = document.getElementById('mobileContactMenu');
+    const mobileContactIcon = document.getElementById('mobileContactIcon');
+    
+    // Open mobile menu
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+     
+    });
+    
+    // Close mobile menu
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    
+    // Toggle mobile contact submenu
+    mobileContactToggle.addEventListener('click', () => {
+      mobileContactMenu.classList.toggle('hidden');
+      mobileContactIcon.classList.toggle('fa-chevron-down');
+      mobileContactIcon.classList.toggle('fa-chevron-up');
+    });
+
+    // function openB(){
+    //   const openBox = document.getElementById("menunav");
+    //   openBox.style.display = 'block';
+    // }
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('open') && 
+          !mobileMenu.contains(e.target) && 
+          !mobileMenuButton.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+  </body>
+</html>
